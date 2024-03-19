@@ -4,7 +4,7 @@
 
 安装依赖包
 DrissionPage为开发开源爬虫框架
-![](/resource/meishijie/Pasted image 20240319154828.png)
+![DrissionPage](/resource/meishijie/Pasted image 20240319154828.png)
 https://gitee.com/g1879/DrissionPage
 手册：
 https://g1879.gitee.io/drissionpagedocs/get_start/import
