@@ -4,7 +4,7 @@
 
 安装依赖包
 DrissionPage为开发开源爬虫框架
-![[Pasted image 20240319154828.png]]
+![](/resource/meishijie/Pasted image 20240319154828.png)
 https://gitee.com/g1879/DrissionPage
 手册：
 https://g1879.gitee.io/drissionpagedocs/get_start/import
@@ -22,7 +22,7 @@ from DrissionPage import SessionPage
 ### 爬取菜系列表
 
 获取菜系分类，默认获取全部
-![[Pasted image 20240319153553.png]]
+![](/resource/meishijie/Pasted image 20240319153553.png)
 ```python
 def get_caixi_link(caixi_group=None, caixi_name=None):
     result = []
@@ -45,7 +45,7 @@ def get_caixi_link(caixi_group=None, caixi_name=None):
 ### 爬取菜单列表
 获取菜单列表，并获取分页信息
 如图：
-![[Pasted image 20240319154722.png]]
+![](/resource/meishijie/Pasted image 20240319154722.png)
 ```python
 def get_menu_items(url):
     result = []
@@ -69,7 +69,8 @@ def get_menu_items(url):
 - 菜谱名、收藏数、~~图片~~、~~做法~~
 - 工艺、口味、时间、难度
 - 主料、辅料
-如图：![[Pasted image 20240319154558.png]]
+如图：
+![](/resource/meishijie/Pasted image 20240319154558.png)
 ```python
 def get_recipe_details(url):
     result = dict(main_list=[], others_list=[])
@@ -126,5 +127,6 @@ if __name__ == '__main__':
 ```
 
 ### 最终导出格式
-![[Pasted image 20240319154257.png]]
+![](/resource/meishijie/Pasted image 20240319154257.png)
+
 
