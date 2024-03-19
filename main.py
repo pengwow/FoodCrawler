@@ -1,30 +1,11 @@
-# FoodCrawler
-
-### 美食杰
-
-安装依赖包
-DrissionPage为开发开源爬虫框架
-![[Pasted image 20240319154828.png]]
-https://gitee.com/g1879/DrissionPage
-手册：
-https://g1879.gitee.io/drissionpagedocs/get_start/import
-``` shell
-pip install DrissionPage
-```
-
-以美食杰网站为例
-### 倒入包
-csv用来保存菜谱
-``` python
 import csv
 from DrissionPage import SessionPage
-```
-### 爬取菜系列表
 
-获取菜系分类，默认获取全部
-![[Pasted image 20240319153553.png]]
-```python
-def get_caixi_link(caixi_group=None, caixi_name=None):
+# 创建页面对象
+page = SessionPage()
+
+# 爬取菜系列表
+def get_caixi_link(caixi_group = '中华菜系', caixi_name='川菜'):
     result = []
     page.get('https://www.meishij.net/caipufenlei/') # 获取菜系列表
     sort_wrap_list = page.eles('.sort_wrap')
@@ -40,13 +21,8 @@ def get_caixi_link(caixi_group=None, caixi_name=None):
                 elif caixi_name == caixi_a.text:
                     result.append(dict(caixi_name=caixi_a.text, caixi_url=caixi_a.attr('href')))
     return result
-```
 
-### 爬取菜单列表
-获取菜单列表，并获取分页信息
-如图：
-![[Pasted image 20240319154722.png]]
-```python
+# 爬取菜单列表
 def get_menu_items(url):
     result = []
     page.get(url)
@@ -62,15 +38,8 @@ def get_menu_items(url):
         print(e)
         next_page = None
     return result, next_page
-```
 
-### 获取食谱详情
-爬取的数据范围主要包含：
-- 菜谱名、收藏数、~~图片~~、~~做法~~
-- 工艺、口味、时间、难度
-- 主料、辅料
-如图：![[Pasted image 20240319154558.png]]
-```python
+# 获取食谱详情
 def get_recipe_details(url):
     result = dict(main_list=[], others_list=[])
     page.get(url, retry=3, interval=1)
@@ -94,19 +63,12 @@ def get_recipe_details(url):
         tag_a = other.ele('tag:a')
         result['others_list'].append(dict(name=tag_a.text, size=other.text.split(tag_a.text)[1]))
     return result
-```
 
-### 保存到CSV文件
-参考手册：
-```python
 def save_to_csv(data):
-	with open('recipe.csv', 'a', newline='') as f:
-		writer = csv.DictWriter(f, data.keys())
-		writer.writerow(data)
-```
+    with open('recipe.csv', 'a', newline='') as f:
+        writer = csv.DictWriter(f, data.keys())
+        writer.writerow(data)
 
-### 入口
-```python
 if __name__ == '__main__':
     caixi_list = get_caixi_link('中华菜系', '川菜')
     menu_list = []
@@ -123,8 +85,10 @@ if __name__ == '__main__':
                 except Exception as e:
                     print(f'error {e}, {menu["menu_name"]}')
             menu_list, next_page = get_menu_items(next_page)
-```
 
-### 最终导出格式
-![[Pasted image 20240319154257.png]]
+
+
+
+
+
 
